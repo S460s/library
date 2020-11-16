@@ -1,0 +1,29 @@
+h1 {
+  text-align: center;
+}
+input {
+  width: 10em;
+  height: 1.5rem;
+  display: block;
+  margin-top: 1em;
+}
+
+input[type="checkbox"] {
+  display: inline;
+}
+
+#addBook {
+  width: 15rem;
+  height: 3rem;
+  display: block;
+  margin: auto;
+}
+#form {
+  display: none;
+  z-index: 1;
+  background-color: aqua;
+  width: 20em;
+  height: 30em;
+  margin: auto;
+  margin-top: 2em;
+}
