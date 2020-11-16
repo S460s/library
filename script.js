@@ -1,5 +1,6 @@
 let myLibrary = [];
 let form = document.getElementById("form");
+let books = document.getElementById("books");
 
 function Book(title, author, pages, read) {
   // The Constructor
@@ -8,6 +9,27 @@ function Book(title, author, pages, read) {
   this.pages = pages;
   this.read = read;
 }
+Book.prototype.displayBook = function () {
+  let card = document.createElement("div");
+  card.classList.add("card");
+  books.appendChild(card);
+
+  let titleP = document.createElement("p");
+  titleP.textContent = `Title: ${this.title}`;
+  card.appendChild(titleP);
+
+  let authorP = document.createElement("p");
+  authorP.textContent = `Author: ${this.author}`;
+  card.appendChild(authorP);
+
+  let pagesP = document.createElement("p");
+  pagesP.textContent = `Pages: ${this.pages}`;
+  card.appendChild(pagesP);
+
+  let readP = document.createElement("p");
+  readP.textContent = `Read: ${this.read}`;
+  card.appendChild(readP);
+};
 
 function addBookToLibrary() {
   let submitButton = document.getElementById("submit");
@@ -16,26 +38,26 @@ function addBookToLibrary() {
     let author = document.getElementById("author").value;
     let pages = document.getElementById("pages").value;
     let read = document.getElementById("read").checked;
-    console.log(213);
     myLibrary.push(new Book(title, author, pages, read));
-
     console.table(myLibrary);
     form.style.cssText = "display: none";
+    //REMOVE INNERHTML
+    books.innerHTML = "";
+    displayAllBooks();
   });
 }
-
-const bookTest1 = new Book("Test", "Tester", 111, true);
-const bookTest2 = new Book("Test2", "Tester2", 222, false);
-myLibrary.push(bookTest1);
-myLibrary.push(bookTest2);
-
 function showWindow() {
   let addBookButton = document.getElementById("addBook");
   addBookButton.addEventListener("click", () => {
     form.style.cssText = "display: block";
-    addBookToLibrary();
   });
 }
 
+function displayAllBooks() {
+  myLibrary.forEach((book) => {
+    book.displayBook();
+  });
+}
+
+addBookToLibrary();
 showWindow();
-console.table(myLibrary);

@@ -21,9 +21,25 @@ input[type="checkbox"] {
 #form {
   display: none;
   z-index: 1;
-  background-color: aqua;
+  border: solid 4px black;
   width: 20em;
   height: 30em;
-  margin: auto;
-  margin-top: 2em;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: grey;
+}
+#books {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.card {
+  margin-top: 10px;
+  margin-right: 2em;
+  width: 200px;
+  height: 200px;
+  border: solid 3px black;
+  border-radius: 5px;
 }
