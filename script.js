@@ -19,6 +19,7 @@ Book.prototype.displayBook = function () {
   card.appendChild(description)
   let readP = document.createElement("button");
   readP.classList.add("status")
+
   if (this.read) {
     readP.textContent = "Read";
     readP.style.backgroundColor = "#52b788"
@@ -26,22 +27,21 @@ Book.prototype.displayBook = function () {
     readP.textContent = "Not Read";
     readP.style.backgroundColor = "red"
   }
-  card.appendChild(readP);
-  deleteCard(card,this)
-  changeStatus(readP)
-}
 
-function changeStatus(status) {
-  status.addEventListener("click", ()=>{
-    console.log(status)
-    if (status.textContent === "Read") {
-      status.textContent = "Not Read";
-      status.style.backgroundColor = "red"
+  readP.addEventListener("click", ()=>{
+    if (readP.textContent === "Read") {
+      readP.textContent = "Not Read";
+      readP.style.backgroundColor = "red"
+      this.read = false
     }else{
-      status.textContent = "Read";
-      status.style.backgroundColor = "#52b788"
+      readP.textContent = "Read";
+      readP.style.backgroundColor = "#52b788"
+      this.read = true
     }
   })
+
+  card.appendChild(readP);
+  deleteCard(card,this)
 }
 
 function showWindow() {
@@ -85,14 +85,10 @@ function deleteCard(card,book) {
   card.appendChild(deleteBtn);
   deleteBtn.addEventListener("click",() => {
     let num = myLibrary.indexOf(book)
-    console.log(num)
     myLibrary.splice(num,1)
-    console.log(myLibrary)
     books.innerHTML = ""
     displayAllBooks()
   })
 }
 addBookToLibrary();
 showWindow();
-
-
