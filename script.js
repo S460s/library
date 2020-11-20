@@ -1,5 +1,10 @@
-let myLibrary = [];
 let form = document.getElementById("form")
+let myLibrary = []
+if(!localStorage.getItem('list')) {
+  myLibrary = []
+  } else {
+  setLibrary();
+  }
 
 function Book(title, author, pages, read) {
   // The Constructor
@@ -29,7 +34,7 @@ Book.prototype.displayBook = function () {
     readP.style.backgroundColor = "#e63946"
   }
 
-  readP.addEventListener("click", ()=>{
+  readP.addEventListener("click", () =>{
     if (readP.textContent === "Read") {
       readP.textContent = "Not Read";
       readP.style.backgroundColor = "#e63946"
@@ -63,9 +68,8 @@ function addBookToLibrary() {
     let author = document.getElementById("author");
     let pages = document.getElementById("pages");
     let read = document.getElementById("read");
-
     myLibrary.push(new Book(title.value, author.value, pages.value, read.checked));
-    console.table(myLibrary);
+    populateStorage();
     form.style.cssText = "display: none";
     books.innerHTML = "";
     displayAllBooks();
@@ -74,8 +78,8 @@ function addBookToLibrary() {
 }
 
 function displayAllBooks() {
-  myLibrary.forEach((book) => {
-    book.displayBook();
+  myLibrary.forEach((item) => {
+    item.displayBook();
   });
 }
 
@@ -91,5 +95,20 @@ function deleteCard(card,book) {
     displayAllBooks()
   })
 }
-addBookToLibrary();
-showWindow();
+function setLibrary() {
+  objects = JSON.parse(localStorage.getItem("list"))
+  objects.forEach(book => {
+    book.__proto__ = Object.create(Book.prototype)
+    myLibrary.push(book)
+  })
+}
+
+function populateStorage(){
+  localStorage.setItem("list", JSON.stringify(myLibrary))
+}
+function startLibrary(){
+  displayAllBooks()
+  addBookToLibrary();
+  showWindow();
+}
+startLibrary()
