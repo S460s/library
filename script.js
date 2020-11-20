@@ -15,6 +15,7 @@ Book.prototype.displayBook = function () {
   card.classList.add("card");
   books.appendChild(card);
   let description = document.createElement("p")
+  description.style.cssText = "  grid-column: 2 / 3; grid-row: 1/4"
   description.textContent = `${this.title} written by ${this.author}, has ${this.pages} pages.`
   card.appendChild(description)
   let readP = document.createElement("button");
@@ -25,13 +26,13 @@ Book.prototype.displayBook = function () {
     readP.style.backgroundColor = "#52b788"
   }else{
     readP.textContent = "Not Read";
-    readP.style.backgroundColor = "red"
+    readP.style.backgroundColor = "#e63946"
   }
 
   readP.addEventListener("click", ()=>{
     if (readP.textContent === "Read") {
       readP.textContent = "Not Read";
-      readP.style.backgroundColor = "red"
+      readP.style.backgroundColor = "#e63946"
       this.read = false
     }else{
       readP.textContent = "Read";

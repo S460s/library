@@ -77,7 +77,7 @@ form {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 #submit {
   display: block;
@@ -94,33 +94,40 @@ form {
 
 .card {
   margin: 1em;
-  width: 25vw;
+  width: fit-content;
   height: 25vh;
   max-width: 200px;
   max-height: 250px;
+  min-height: fit-content;
+
   border: solid 3px black;
   border-radius: 5px;
   font-size: 2vh;
   text-align: center;
   background-color: #f2cc8f;
+
+  display: grid;
+  grid-template-rows: 40% auto 15% 15% 5px;
+  grid-template-columns: 5px auto 5px;
+  row-gap: 5px;
 }
 
 .status {
-  padding: 0.2em 1em 0.2em 1em;
   display: block;
-  margin: auto;
-  margin-top: 10px;
   border-radius: 5px;
+  font-size: 2vh;
+  grid-row: 3 / 4;
+  grid-column: 2 / 3;
 }
 
 .deleteBtn {
   display: block;
-  padding: 0.5em 1.5em 0.5em 1.5em;
-  margin: auto;
-  margin-top: 40%;
   border: 1px solid #3d405b;
   border-radius: 5px;
   background-color: #f0ead2;
+  font-size: 2vh;
+  grid-row: 4 / 5;
+  grid-column: 2 / 3;
 }
 
 #close {
