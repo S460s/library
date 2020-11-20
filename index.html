@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
   <body>
-    <h1>TOP Library</h1>
+    <h1>S460's Library</h1>
     <button id="addBook">+ New Book</button>
     <div id="form">
-      <form action="#">
+      <form id="popUp" action="#">
         <span id="close">&times</span>
         <input id="title" type="text" placeholder="Title" required />
         <input id="author" type="text" placeholder="Author" required />
-        <input id="pages" type="number" placeholder="Pages" />
+        <input id="pages" type="number" placeholder="Pages" required/>
         <label for="read">Read</label>
         <input id="read" type="checkbox" />
-        <button id="submit" type="button">Add book</button>
+        <button id="submit" type="submit">Add book</button>
       </form>
     </div>
 
