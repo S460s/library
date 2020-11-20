@@ -92,6 +92,9 @@ function deleteCard(card,book) {
     let num = myLibrary.indexOf(book)
     myLibrary.splice(num,1)
     books.innerHTML = ""
+
+
+    populateStorage()
     displayAllBooks()
   })
 }
