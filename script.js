@@ -1,53 +1,54 @@
-let form = document.getElementById("form")
-let myLibrary = []
-if(!localStorage.getItem('list')) {
-  myLibrary = []
-  } else {
-  setLibrary();
+class Book {
+  constructor(title, author, pages, read) {
+
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
   }
+  displayBook() {
+    let books = document.getElementById("books");
+    let card = document.createElement("div");
+    card.classList.add("card");
+    books.appendChild(card);
+    let description = document.createElement("p")
+    description.style.cssText = "  grid-column: 2 / 3; grid-row: 1/4"
+    description.textContent = `${this.title} written by ${this.author}, has ${this.pages} pages.`
+    card.appendChild(description)
+    let readP = document.createElement("button");
+    readP.classList.add("status")
 
-function Book(title, author, pages, read) {
-  // The Constructor
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
-
-Book.prototype.displayBook = function () {
-  let books = document.getElementById("books");
-  let card = document.createElement("div");
-  card.classList.add("card");
-  books.appendChild(card);
-  let description = document.createElement("p")
-  description.style.cssText = "  grid-column: 2 / 3; grid-row: 1/4"
-  description.textContent = `${this.title} written by ${this.author}, has ${this.pages} pages.`
-  card.appendChild(description)
-  let readP = document.createElement("button");
-  readP.classList.add("status")
-
-  if (this.read) {
-    readP.textContent = "Read";
-    readP.style.backgroundColor = "#52b788"
-  }else{
-    readP.textContent = "Not Read";
-    readP.style.backgroundColor = "#e63946"
-  }
-
-  readP.addEventListener("click", () =>{
-    if (readP.textContent === "Read") {
-      readP.textContent = "Not Read";
-      readP.style.backgroundColor = "#e63946"
-      this.read = false
-    }else{
+    if (this.read) {
       readP.textContent = "Read";
       readP.style.backgroundColor = "#52b788"
-      this.read = true
+    } else {
+      readP.textContent = "Not Read";
+      readP.style.backgroundColor = "#e63946"
     }
-  })
 
-  card.appendChild(readP);
-  deleteCard(card,this)
+    readP.addEventListener("click", () => {
+      if (readP.textContent === "Read") {
+        readP.textContent = "Not Read";
+        readP.style.backgroundColor = "#e63946"
+        this.read = false
+      } else {
+        readP.textContent = "Read";
+        readP.style.backgroundColor = "#52b788"
+        this.read = true
+      }
+    })
+
+    card.appendChild(readP);
+    deleteCard(card, this)
+  }
+}
+
+let form = document.getElementById("form")
+let myLibrary = []
+if (!localStorage.getItem('list')) {
+  myLibrary = []
+} else {
+  setLibrary();
 }
 
 function showWindow() {
@@ -56,7 +57,7 @@ function showWindow() {
     form.style.cssText = "display: block";
 
     closeBtn = document.getElementById("close")
-    closeBtn.addEventListener("click", ()=> {form.style.cssText = "display: none"})
+    closeBtn.addEventListener("click", () => { form.style.cssText = "display: none" })
   });
 }
 
@@ -83,14 +84,14 @@ function displayAllBooks() {
   });
 }
 
-function deleteCard(card,book) {
+function deleteCard(card, book) {
   let deleteBtn = document.createElement("button")
   deleteBtn.textContent = "Remove"
   deleteBtn.classList.add("deleteBtn")
   card.appendChild(deleteBtn);
-  deleteBtn.addEventListener("click",() => {
+  deleteBtn.addEventListener("click", () => {
     let num = myLibrary.indexOf(book)
-    myLibrary.splice(num,1)
+    myLibrary.splice(num, 1)
     books.innerHTML = ""
 
 
@@ -106,12 +107,14 @@ function setLibrary() {
   })
 }
 
-function populateStorage(){
+function populateStorage() {
   localStorage.setItem("list", JSON.stringify(myLibrary))
 }
-function startLibrary(){
+function startLibrary() {
   displayAllBooks()
   addBookToLibrary();
   showWindow();
 }
 startLibrary()
+
+console.log(Book);
